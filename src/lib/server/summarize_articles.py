@@ -1,5 +1,5 @@
-from .get_google_articles import get_google_articles
-from .summarize import summarize
+from get_google_articles import get_google_articles
+from summarize import summarize
 
 
 def summarize_articles(query):

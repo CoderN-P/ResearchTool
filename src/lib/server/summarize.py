@@ -1,7 +1,5 @@
 import newspaper
 
-from src.lib.server.get_google_articles import get_google_articles
-
 
 def summarize(article_obj):
     try:

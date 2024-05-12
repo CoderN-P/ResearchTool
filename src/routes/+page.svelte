@@ -1,59 +1,56 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { onMount } from 'svelte';
+	import { typewriter } from './transition.ts';
+
+	const words = [
+		'essay',
+		'project',
+		'presentation',
+		'homework',
+		'assignment',
+		'paper',
+		'work'
+	];
+
+
+	let i = -1;
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			i = (i + 1) % words.length;
+		}, 2500);
+
+		return () => clearInterval(interval);
+	});
+
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Research Tool</title>
+	<meta name="description" content="Research faster with the power of AI" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+<section class=" relative w-full flex  items-center justify-center h-full">
+	<div class=" mb-16 flex flex-col">
+		<h1 class="text-5xl text-center font-bold w-full">Research <span class="underline decoration-wavy underline-offset-8 decoration-4 bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text decoration-blue-600">Faster</span></h1>
 
-		to your new<br />SvelteKit app
-	</h1>
+		<p class="text-center text-lg font-semibold mt-4">[name] helps you research for your
+			{#key i}<span in:typewriter={{speed:4}} class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-400">{words[i] || ''}</span>{/key}
+		</p>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
 
-	<Counter />
+	</div>
+
+	<div class="absolute bottom-0 left-0 w-full p-4 h-20 text-xl font-bold text-black/50 flex items-center">
+		<p class="text-center ">Created by </p>
+		<div class="ml-1 underline  decoration-blue-500 hover:text-black/70">Neel P</div>
+	</div>
+
+	<div class="blur-2xl">
+		<div class="absolute  bottom-0 left-0 w-full h-20 bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 opacity-50"></div>
+	</div>
+
+
+
 </section>
 
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
