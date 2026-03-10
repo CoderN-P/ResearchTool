@@ -4,4 +4,5 @@ from summarize import summarize
 
 def summarize_articles(query):
     articles = get_google_articles(query)
-    return [summarize(article) for article in articles]
+    results = [summarize(article) for article in articles]
+    return [r for r in results if isinstance(r, dict)]

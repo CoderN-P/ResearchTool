@@ -9,6 +9,6 @@ def summarize(article_obj):
         article.nlp()
 
         return {"summary": article.summary, "keywords": article.keywords, "authors": article.authors, "publish_date": article.publish_date, "url": article_obj["url"], "title": article_obj["title"]}
-    except: # noqa
-        return "Failed to summarize article"
+    except Exception:
+        return None
 
