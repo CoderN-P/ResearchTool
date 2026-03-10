@@ -4,7 +4,6 @@ import os
 
 load_dotenv()
 
-print(os.environ['NEWS_API_KEY'])
 # Init
 newsapi = NewsApiClient(api_key=os.environ['NEWS_API_KEY'])
 
@@ -18,6 +17,3 @@ def get_articles(q):
                                           sort_by='relevancy')
 
     return all_articles
-
-
-print(get_articles('benefits of nuclear energy'))
